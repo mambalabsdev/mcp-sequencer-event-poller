@@ -96,7 +96,7 @@ Pay per event on Apify, billed to your Apify account. Prices in USD.
 
 | Event | Free plan | Bronze | Silver | Gold |
 |---|---|---|---|---|
-| `event-row`, per sequencer event | $0.003 | $0.00285 | $0.0027 | $0.00255 |
+| `event-row`, per sequencer event | $0.008 | $0.0076 | $0.0072 | $0.0068 |
 | `apify-actor-start`, per run start | $0.001 | $0.001 | $0.001 | $0.001 |
 
 The run summary row and already delivered events are free. Mamba Labs pays the platform costs of the run.
