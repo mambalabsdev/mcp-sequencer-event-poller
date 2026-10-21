@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "mamba-sequencer-event-poller": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mambalabsdev/mcp-sequencer-event-poller"
+      ],
+      "env": {
+        "APIFY_TOKEN": "your-apify-token"
+      }
+    }
+  }
+}

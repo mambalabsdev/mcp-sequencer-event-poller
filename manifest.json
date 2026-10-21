@@ -1,0 +1,69 @@
+{
+  "manifest_version": "0.3",
+  "name": "mcp-sequencer-event-poller",
+  "version": "1.0.0",
+  "description": "MCP server for Sequencer Event Poller. Replies, bounces, unsubscribes, meetings, and LinkedIn replies from your own Instantly, Smartlead, HeyReach, and lemlist accounts, one row per event. Read only. Runs on Apify.",
+  "author": {
+    "name": "Mamba Labs"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/mambalabsdev/mcp-sequencer-event-poller",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mambalabsdev/mcp-sequencer-event-poller"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "build/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/build/index.js"
+      ],
+      "env": {
+        "APIFY_TOKEN": "${user_config.apify_token}",
+        "INSTANTLY_API_KEY": "${user_config.instantly_api_key}",
+        "SMARTLEAD_API_KEY": "${user_config.smartlead_api_key}",
+        "HEYREACH_API_KEY": "${user_config.heyreach_api_key}",
+        "LEMLIST_API_KEY": "${user_config.lemlist_api_key}"
+      }
+    }
+  },
+  "user_config": {
+    "apify_token": {
+      "type": "string",
+      "title": "Apify API Token",
+      "description": "Apify API token for running the actor",
+      "sensitive": true,
+      "required": false
+    },
+    "instantly_api_key": {
+      "type": "string",
+      "title": "Instantly API key (optional)",
+      "description": "Optional. Your own Instantly API v2 key with a read scope",
+      "sensitive": true,
+      "required": false
+    },
+    "smartlead_api_key": {
+      "type": "string",
+      "title": "Smartlead API key (optional)",
+      "description": "Optional. Your own Smartlead API key",
+      "sensitive": true,
+      "required": false
+    },
+    "heyreach_api_key": {
+      "type": "string",
+      "title": "HeyReach API key (optional)",
+      "description": "Optional. Your own HeyReach API key",
+      "sensitive": true,
+      "required": false
+    },
+    "lemlist_api_key": {
+      "type": "string",
+      "title": "lemlist API key (optional)",
+      "description": "Optional. Your own lemlist API key",
+      "sensitive": true,
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "name": "@mambalabsdev/mcp-sequencer-event-poller",
+  "version": "1.0.0",
+  "description": "MCP server for Sequencer Event Poller. Replies, bounces, unsubscribes, meetings, and LinkedIn replies from your own Instantly, Smartlead, HeyReach, and lemlist accounts, one row per event. Read only. Runs on Apify.",
+  "type": "module",
+  "bin": {
+    "mcp-sequencer-event-poller": "./build/index.js"
+  },
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "test": "npm run build && node --test test/*.test.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "instantly",
+    "smartlead",
+    "heyreach",
+    "lemlist",
+    "cold-email",
+    "replies",
+    "apify",
+    "clay"
+  ],
+  "author": "Mamba Labs <labs@mambamindsetgrowth.com>",
+  "license": "MIT",
+  "homepage": "https://apify.com/mambalabs/sequencer-event-poller",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mambalabsdev/mcp-sequencer-event-poller"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "5.9.3"
+  },
+  "mcpName": "com.mambabuilt/mcp-sequencer-event-poller"
+}

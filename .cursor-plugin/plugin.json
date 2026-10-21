@@ -1,0 +1,30 @@
+{
+  "name": "mcp-sequencer-event-poller",
+  "displayName": "Sequencer Event Poller",
+  "version": "1.0.0",
+  "description": "MCP server for Sequencer Event Poller. Replies, bounces, unsubscribes, meetings, and LinkedIn replies from your own Instantly, Smartlead, HeyReach, and lemlist accounts, one row per event. Read only. Runs on Apify.",
+  "author": {
+    "name": "Mamba Labs",
+    "email": "labs@mambamindsetgrowth.com"
+  },
+  "homepage": "https://mambabuilt.com",
+  "repository": "https://github.com/mambalabsdev/mcp-sequencer-event-poller",
+  "license": "MIT",
+  "category": "productivity",
+  "tags": [
+    "instantly",
+    "smartlead",
+    "heyreach",
+    "lemlist",
+    "cold-email"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "instantly",
+    "smartlead",
+    "heyreach",
+    "lemlist"
+  ],
+  "mcpServers": ".mcp.json"
+}
