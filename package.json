@@ -1,6 +1,6 @@
 {
   "name": "@mambalabsdev/mcp-sequencer-event-poller",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for Sequencer Event Poller. Replies, bounces, unsubscribes, meetings, and LinkedIn replies from your own Instantly, Smartlead, HeyReach, and lemlist accounts, one row per event. Read only. Runs on Apify.",
   "type": "module",
   "bin": {

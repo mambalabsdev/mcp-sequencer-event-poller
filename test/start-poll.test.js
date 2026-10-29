@@ -11,7 +11,7 @@ const repo = join(here, "..");
 
 const TOOL_NAME = "poll_sequencer_events";
 const ACTOR_ID = "S6s8Rjd61tGdrMRk4";
-const ARGS = {"since_hours": 24};
+const ARGS = {"since_hours": "24"};
 
 // Call the tool over stdio against the built server with fetch replaced by a
 // fake Apify API (test/mock-fetch.mjs). Returns the tools/call result and the

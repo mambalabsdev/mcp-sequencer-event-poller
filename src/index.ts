@@ -211,7 +211,8 @@ function keysFromEnv(): Record<string, string> {
   return out;
 }
 
-// Sequencer Event Poller (immutable actor ID S6s8Rjd61tGdrMRk4). Every buyer facing input of the actor is exposed except the four vendor keys, which come from the environment (see keysFromEnv).
+// Sequencer Event Poller (immutable actor ID S6s8Rjd61tGdrMRk4). Every buyer facing input of the actor is exposed except the four vendor keys, which come from the environment (see keysFromEnv). The actor takes numbers and booleans as strings, so those inputs are strings here too.
+const bool = () => z.enum(["true", "false"]).optional();
 server.registerTool(
   "poll_sequencer_events",
   {
@@ -226,9 +227,7 @@ server.registerTool(
       openWorldHint: true,
     },
     inputSchema: {
-      since_hours: z.number().int().min(1).max(2160)
-        .optional()
-        .describe("Read events from this many hours before the run, at most 2160 (90 days). Default 24. Ignored when since is set."),
+      since_hours: z.string().optional().describe("Read events from this many hours before the run, 1 to 2160 (90 days). Default 24. Ignored when since is set."),
       since: z.string()
         .optional()
         .describe("Optional start of the window in UTC, for example 2026-10-20T00:00:00Z."),
@@ -238,9 +237,7 @@ server.registerTool(
       event_types: z.array(z.enum(["reply", "linkedin_reply", "bounce", "unsubscribe", "meeting_booked", "interested", "not_interested", "out_of_office", "connection_accepted", "open", "click"]))
         .optional()
         .describe("Which events to return. Default: reply, linkedin_reply, bounce, unsubscribe, meeting_booked, interested, connection_accepted."),
-      only_new: z.boolean()
-        .optional()
-        .describe("Skip events an earlier run already returned (free). Default true."),
+      only_new: bool().describe("Skip events an earlier run already returned (free). Default true."),
       state_key: z.string()
         .optional()
         .describe("Optional name for the only new events memory, so two schedules keep separate memories."),
@@ -256,12 +253,8 @@ server.registerTool(
       lemlist_campaign_ids: z.array(z.string())
         .optional()
         .describe("Read only these lemlist campaigns (cam_ ids). Empty: all campaigns."),
-      max_pages_per_query: z.number().int().min(1).max(100)
-        .optional()
-        .describe("Pages of 100 records per vendor query. Default 20."),
-      max_events: z.number().int().min(1).max(50000)
-        .optional()
-        .describe("Event rows per run, oldest first. Default 5000."),
+      max_pages_per_query: z.string().optional().describe("Pages of 100 records per vendor query, 1 to 100. Default 20."),
+      max_events: z.string().optional().describe("Event rows per run, oldest first, up to 50000. Each event row is billed. Default 5000."),
       max_charge_usd: z.string()
         .optional()
         .describe("Optional. The run stops before a charge that would pass this amount."),

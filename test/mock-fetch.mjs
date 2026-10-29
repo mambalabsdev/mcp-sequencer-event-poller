@@ -1,6 +1,7 @@
 // Test preload: replaces global fetch with a fake Apify API so the start and
 // poll path runs offline. Every request is appended to MOCK_LOG. MOCK_MODE
-// "fail" makes the run finish FAILED.
+// "fail" makes the run finish FAILED. MOCK_BODY, when set, receives the run
+// start body, so a test can read exactly what the actor would be sent.
 import { appendFileSync } from "node:fs";
 
 const json = (body, status = 200) =>
@@ -11,6 +12,7 @@ globalThis.fetch = async (url, opts = {}) => {
   if (process.env.MOCK_LOG) appendFileSync(process.env.MOCK_LOG, `${method} ${url}\n`);
   const u = String(url);
   if (method === "POST" && /\/v2\/acts\/[^/]+\/runs\?/.test(u)) {
+    if (process.env.MOCK_BODY) appendFileSync(process.env.MOCK_BODY, String(opts.body ?? ""));
     return json({ data: { id: "run1", status: "RUNNING", defaultDatasetId: "ds1" } }, 201);
   }
   if (u.includes("/v2/actor-runs/run1")) {

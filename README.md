@@ -69,25 +69,25 @@ Restart the client. The `poll_sequencer_events` tool appears.
 
 ```json
 {
-  "since_hours": 24,
+  "since_hours": "24",
   "event_types": ["reply", "linkedin_reply", "bounce", "meeting_booked"]
 }
 ```
 
 ## Inputs
 
-Every buyer facing input of the actor except the four vendor keys, which are read from this server's environment, never from tool arguments. Omitted inputs take the actor's own defaults.
+Every buyer facing input of the actor except the four vendor keys, which are read from this server's environment, never from tool arguments. Omitted inputs take the actor's own defaults. Numbers and yes or no options are sent as text ("24", "true"), which is what the actor accepts; a value that does not parse comes back as one free row that names the field.
 
 | Input | Type | Required | Description |
 |---|---|---|---|
-| `since_hours` | integer | no | Look back this many hours, at most 2160. Default 24. |
+| `since_hours` | string | no | Look back this many hours, 1 to 2160, as text such as "24". Default 24. |
 | `since`, `until` | string | no | Optional exact window in UTC. |
 | `event_types` | array | no | Any of reply, linkedin_reply, bounce, unsubscribe, meeting_booked, interested, not_interested, out_of_office, connection_accepted, open, click. |
-| `only_new` | boolean | no | Skip events an earlier run returned. Default true. |
+| `only_new` | string | no | "true" or "false". Skip events an earlier run returned. Default true. |
 | `state_key` | string | no | Name for the only new events memory. |
 | `instantly_campaign_ids`, `smartlead_campaign_ids`, `heyreach_campaign_ids`, `lemlist_campaign_ids` | array | no | Read only these campaigns. |
-| `max_pages_per_query` | integer | no | Pages of 100 records per vendor query. Default 20. |
-| `max_events` | integer | no | Event rows per run. Default 5000. |
+| `max_pages_per_query` | string | no | Pages of 100 records per vendor query, 1 to 100, as text. Default 20. |
+| `max_events` | string | no | Event rows per run, up to 50000, as text. Default 5000. |
 | `max_charge_usd` | string | no | Optional cost cap for the run. |
 
 ## Pricing
